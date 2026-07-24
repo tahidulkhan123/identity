@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tahidul Khan Identity</title>
+    <title>আমার জীবন বৃত্তান্ত</title>
     <!-- FontAwesome Link for Social Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -301,40 +301,6 @@
             100% { opacity: 0.5; }
         }
 
-        /* মিউজিক কন্ট্রোল বাটন ও উইজেট ডিজাইন */
-        .music-widget {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 8px 14px;
-            border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 1000;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .music-widget:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: scale(1.05);
-        }
-
-        .music-widget i {
-            color: #16a34a;
-            font-size: 16px;
-        }
-
-        .music-widget span {
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
-        }
-
         /* প্রোফাইল ছবি */
         .image-box {
             position: relative;
@@ -447,7 +413,7 @@
             box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
         }
 
-        /* বিস্তারিত তথ্য সেকশন */
+        /* বিস্তারিত তথ্য সেকশন (লম্বা হলে যেন স্ক্রোল করা যায়) */
         .details {
             max-height: 0;
             opacity: 0;
@@ -502,24 +468,12 @@
 </head>
 <body>
 
-    <!-- ব্যাকগ্রাউন্ড মিউজিক অডিও ট্যাগ (এখানে আপনার mp3 এর ডাইরেক্ট লিংক বসান) -->
-    <audio id="bgMusic" loop>
-        <source src="music.mp3" type="audio/mpeg">
-        আপনার ব্রাউজার অডিও ট্যাগ সাপোর্ট করে না।
-    </audio>
-
-    <!-- মিউজিক কন্ট্রোল বাটন উইজেট -->
-    <div class="music-widget" onclick="toggleMusic()" id="musicWidget">
-        <i class="fas fa-music" id="musicIcon"></i>
-        <span id="musicText">মিউজিক অন করুন</span>
-    </div>
-
     <!-- ফায়ার, ওয়াটার ও গ্যালাক্সি লেয়ার কনটেইনার -->
     <div class="flame-overlay" id="flameContainer"></div>
     <div class="water-overlay" id="waterContainer"></div>
     <div class="galaxy-overlay" id="galaxyContainer"></div>
 
-    <div class="galaxy-hint" id="galaxyHint">নিচে টানুন 👇 (প্রফাইল ফিরিয়ে আনতে) 🌌</div>
+    <div class="galaxy-hint" id="galaxyHint">নিচে টানুন বা স্ক্রোল করুন (Card ফিরিয়ে আনতে) 🌌</div>
 
     <div class="profile-card" id="profileCard">
         
@@ -531,7 +485,7 @@
 
         <!-- প্রোফাইল ছবি -->
         <div class="image-box">
-            <img src="Tahidul.jpg" alt="Tahidul Khan">
+            <img src="https://via.placeholder.com/150" alt="Tahidul Khan">
         </div>
 
         <!-- নাম ও পেশা -->
@@ -542,7 +496,7 @@
         <div class="social-links">
             <a href="https://www.facebook.com/10TAHIDUL" class="fb" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.tiktok.com/@tahidul_khan" class="tiktok" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.Instagram.com/_tahidul111" class="insta" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/_tahidul111" class="insta" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://wa.me/+8801403380158" class="wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
 
@@ -567,45 +521,6 @@
 
     <!-- জাভাস্ক্রিপ্ট -->
     <script>
-        // ব্যাকগ্রাউন্ড মিউজিক হ্যান্ডলিং
-        const music = document.getElementById("bgMusic");
-        const musicWidget = document.getElementById("musicWidget");
-        const musicText = document.getElementById("musicText");
-        const musicIcon = document.getElementById("musicIcon");
-        let isPlaying = false;
-
-        function toggleMusic() {
-            if (!isPlaying) {
-                music.play().then(() => {
-                    isPlaying = true;
-                    musicText.innerText = "মিউজিক বাজছে 🎵";
-                    musicIcon.classList.remove("fa-music");
-                    musicIcon.classList.add("fa-volume-high");
-                }).catch(error => {
-                    console.log("অডিও প্লে করতে সমস্যা হয়েছে: ", error);
-                });
-            } else {
-                music.pause();
-                isPlaying = false;
-                musicText.innerText = "মিউজিক বন্ধ";
-                musicIcon.classList.remove("fa-volume-high");
-                musicIcon.classList.add("fa-music");
-            }
-        }
-
-        // ব্রাউজারে প্রথম যেকোনো জায়গায় ক্লিক করলে মিউজিক অটো চালু হওয়ার সুবিধা (ইউজারের সুবিধার্থে)
-        window.addEventListener('click', function autoPlayOnce() {
-            if (!isPlaying) {
-                music.play().then(() => {
-                    isPlaying = true;
-                    musicText.innerText = "মিউজিক বাজছে 🎵";
-                    musicIcon.classList.remove("fa-music");
-                    musicIcon.classList.add("fa-volume-high");
-                    window.removeEventListener('click', autoPlayOnce);
-                }).catch(() => {});
-            }
-        }, { once: true });
-
         function toggleDetails() {
             const details = document.getElementById("more-info");
             const btnText = document.getElementById("btn-text");
@@ -694,7 +609,7 @@
         let isGalaxyMode = false;
 
         card.addEventListener("mousedown", (e) => {
-            if(e.target.closest('a') || e.target.closest('button') || e.target.closest('.card-badge-emoji-right') || e.target.closest('.card-badge-emoji-left') || e.target.closest('.music-widget')) return;
+            if(e.target.closest('a') || e.target.closest('button') || e.target.closest('.card-badge-emoji-right') || e.target.closest('.card-badge-emoji-left')) return;
             isDragging = true;
             startY = e.clientY;
             card.style.transition = "none";
@@ -736,7 +651,7 @@
 
         // টাচ ইভেন্ট (মোবাইল ডিভাইসের জন্য)
         card.addEventListener("touchstart", (e) => {
-            if(e.target.closest('a') || e.target.closest('button') || e.target.closest('.card-badge-emoji-right') || e.target.closest('.card-badge-emoji-left') || e.target.closest('.music-widget')) return;
+            if(e.target.closest('a') || e.target.closest('button') || e.target.closest('.card-badge-emoji-right') || e.target.closest('.card-badge-emoji-left')) return;
             isDragging = true;
             startY = e.touches[0].clientY;
             card.style.transition = "none";
@@ -779,7 +694,7 @@
         // গ্যালাক্সি মোডে পুরো পেজে টাচ বা মাউস ড্র্যাগ করে কার্ড ফিরিয়ে আনার ব্যবস্থা
         let bodyStartY = 0;
         window.addEventListener("mousedown", (e) => {
-            if (!isGalaxyMode || e.target.closest('.music-widget')) return;
+            if (!isGalaxyMode) return;
             bodyStartY = e.clientY;
         });
         window.addEventListener("mousemove", (e) => {
@@ -804,7 +719,7 @@
 
         // মোবাইল স্ক্রিনে গ্যালাক্সি মোডে যেকোনো জায়গা থেকে টেনে নিচে নামানোর জন্য
         window.addEventListener("touchstart", (e) => {
-            if (!isGalaxyMode || e.target.closest('.music-widget')) return;
+            if (!isGalaxyMode) return;
             bodyStartY = e.touches[0].clientY;
         });
         window.addEventListener("touchmove", (e) => {
